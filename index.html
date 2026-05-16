@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>INTERPARK</title>
+
+  <!-- Biblioteca PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- Fonte -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins', sans-serif;
+    }
+
+    body{
+      background: linear-gradient(180deg,#0f172a,#1e293b);
+      min-height:100vh;
+      padding:20px;
+      color:white;
+    }
+
+    /* TOPO */
+
+    .topo{
+      text-align:center;
+      margin-bottom:25px;
+      animation:fadeDown 1s ease;
+    }
+
+    .logo{
+      font-size:38px;
+      font-weight:700;
+      letter-spacing:3px;
+      color:#38bdf8;
+      text-shadow:0 0 15px rgba(56,189,248,0.6);
+    }
+
+    .subtitulo{
+      margin-top:8px;
+      color:#cbd5e1;
+      font-size:14px;
+    }
+
+    /* GRID */
+
+    .container{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:18px;
+      max-width:500px;
+      margin:auto;
+    }
+
+    /* CARD */
+
+    .menu-card{
+      background:rgba(255,255,255,0.06);
+      backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,0.1);
+      border-radius:20px;
+      padding:18px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.3);
+
+      animation:fadeUp 0.6s ease;
+      transition:0.3s;
+    }
+
+    .menu-card:hover{
+      transform:translateY(-4px);
+    }
+
+    .menu-card h2{
+      margin-bottom:15px;
+      font-size:22px;
+      color:#38bdf8;
+      text-align:center;
+    }
+
+    /* BOTÕES */
+
+    .option{
+      width:100%;
+      border:none;
+      margin-bottom:12px;
+      padding:15px;
+      border-radius:14px;
+
+      background:linear-gradient(135deg,#2563eb,#38bdf8);
+
+      color:white;
+      font-size:15px;
+      font-weight:600;
+
+      cursor:pointer;
+
+      transition:0.3s;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .option::before{
+      content:'';
+      position:absolute;
+      width:120px;
+      height:120px;
+      background:rgba(255,255,255,0.2);
+      border-radius:50%;
+      top:-50px;
+      left:-120px;
+      transition:0.5s;
+    }
+
+    .option:hover::before{
+      left:120%;
+    }
+
+    .option:hover{
+      transform:scale(1.03);
+    }
+
+    .option:active{
+      transform:scale(0.96);
+    }
+
+    /* RODAPÉ */
+
+    .info{
+      text-align:center;
+      margin-top:25px;
+      color:#cbd5e1;
+      font-size:13px;
+      opacity:0.9;
+    }
+
+    /* RESPONSIVO */
+
+    @media(min-width:768px){
+
+      .container{
+        grid-template-columns:repeat(2,1fr);
+        max-width:900px;
+      }
+
+    }
+
+    /* ANIMAÇÕES */
+
+    @keyframes fadeDown{
+      from{
+        opacity:0;
+        transform:translateY(-20px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(25px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- TOPO -->
+  <div class="topo">
+    <div class="logo">INTERPARK</div>
+    <div class="subtitulo">
+      Sistema de geração de senha PDF
+    </div>
+  </div>
+
+  <!-- MENUS -->
+  <div class="container">
+
+    <!-- MILHO -->
+    <div class="menu-card">
+      <h2>🌽 Milho</h2>
+
+      <button class="option" onclick="gerarPDF('Amido')">Amido</button>
+
+      <button class="option" onclick="gerarPDF('Brewgill')">Brewgill</button>
+
+      <button class="option" onclick="gerarPDF('Maltogil')">Maltogil</button>
+
+      <button class="option" onclick="gerarPDF('Promil')">Promil</button>
+
+      <button class="option" onclick="gerarPDF('Poteml')">Poteml</button>
+
+      <button class="option" onclick="gerarPDF('Acido')">Acido</button>
+
+      <button class="option" onclick="gerarPDF('Licor de Maltogil')">
+        Licor de Maltogil
+      </button>
+
+      <button class="option" onclick="gerarPDF('Maltose')">Maltose</button>
+
+      <button class="option" onclick="gerarPDF('Glutonose')">Glutonose</button>
+
+      <button class="option" onclick="gerarPDF('Glucogil')">Glucogil</button>
+
+      <button class="option" onclick="gerarPDF('Oleo Bruto de Milho')">
+        Oleo Bruto de Milho
+      </button>
+
+      <button class="option" onclick="gerarPDF('Agua de Maceração')">
+        Agua de Maceração
+      </button>
+    </div>
+
+    <!-- CASC -->
+    <div class="menu-card">
+      <h2>🌱 Casc</h2>
+
+      <button class="option" onclick="gerarPDF('Soja')">
+        Soja
+      </button>
+    </div>
+
+    <!-- OLEO -->
+    <div class="menu-card">
+      <h2>🛢️ Óleo</h2>
+
+      <button class="option" onclick="gerarPDF('Degomado')">
+        Degomado
+      </button>
+
+      <button class="option" onclick="gerarPDF('Refinado')">
+        Refinado
+      </button>
+
+      <button class="option" onclick="gerarPDF('Envasado')">
+        Envasado
+      </button>
+    </div>
+
+    <!-- FARELO -->
+    <div class="menu-card">
+      <h2>📦 Farelo</h2>
+
+      <button class="option" onclick="gerarPDF('Moído')">
+        Moído
+      </button>
+
+      <button class="option" onclick="gerarPDF('Ensacado')">
+        Ensacado
+      </button>
+
+      <button class="option" onclick="gerarPDF('Peletizado')">
+        Peletizado
+      </button>
+
+      <button class="option" onclick="gerarPDF('Sypass')">
+        Sypass
+      </button>
+
+      <button class="option" onclick="gerarPDF('Casquinha')">
+        Casquinha
+      </button>
+    </div>
+
+  </div>
+
+  <div class="info">
+    Ao selecionar um produto será gerado automaticamente um PDF.
+  </div>
+
+  <script>
+
+    // GERA SENHA ÚNICA
+
+    function gerarSenha(){
+
+      const chars =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
+      let senha = '';
+
+      for(let i = 0; i < 6; i++){
+
+        senha += chars.charAt(
+          Math.floor(Math.random() * chars.length)
+        );
+
+      }
+
+      return senha;
+    }
+
+    // GERAR PDF
+
+    function gerarPDF(produto){
+
+      const { jsPDF } = window.jspdf;
+
+      const doc = new jsPDF();
+
+      const agora = new Date();
+
+      const data =
+      agora.toLocaleDateString('pt-BR');
+
+      const hora =
+      agora.toLocaleTimeString('pt-BR');
+
+      const senha = gerarSenha();
+
+      // CABEÇALHO
+      doc.setFontSize(26);
+      doc.text("INTERPARK", 70, 25);
+
+      doc.setFontSize(20);
+      doc.text("SENHA DE PRODUÇÃO", 45, 45);
+
+      // DADOS
+      doc.setFontSize(16);
+
+      doc.text("Produto: " + produto, 20, 80);
+
+      doc.text("Data: " + data, 20, 100);
+
+      doc.text("Hora: " + hora, 20, 120);
+
+      // SENHA
+      doc.setFontSize(32);
+
+      doc.text("Senha:", 20, 160);
+
+      doc.setFontSize(36);
+
+      doc.text(senha, 20, 185);
+
+      // NOME PDF
+      const nomeArquivo =
+      produto.replace(/\s/g, "_") + ".pdf";
+
+      // DOWNLOAD
+      doc.save(nomeArquivo);
+
+    }
+
+  </script>
+
+</body>
+</html>
